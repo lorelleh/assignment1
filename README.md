@@ -12,7 +12,7 @@
 
 **Linux/ROS environment type:**  
 - [ ] Dual-boot Ubuntu
-- [√] WSL2 Ubuntu
+- [x] WSL2 Ubuntu
 - [ ] Ubuntu in VM (UTM/VirtualBox/VMware/Parallels)
 - [ ] Docker container
 - [ ] Lab PC
