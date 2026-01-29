@@ -100,10 +100,8 @@ OpenCV version: 4.13.0 (required: ≥4.9)
 ```
 
 **Screenshot:**  
-_[Include one screenshot showing both tests passing]_
-
-![Python Tests Passing](path/to/your/screenshot.png)
-
+![test_python](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-1.png)
+![test_open3d_pointcloud](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-2.png)
 ---
 
 ## 3. ROS 2 Workspace Check
