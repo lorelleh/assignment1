@@ -100,8 +100,8 @@ OpenCV version: 4.13.0 (required: ≥4.9)
 ```
 
 **Screenshot:**  
-![test_python](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-1.png)
-![test_open3d_pointcloud](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-2.png)
+![Python Tests Passing](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-1.png)
+![Open3d_Pointcloud Tests Passing](https://raw.githubusercontent.com/lorelleh/assignment1/cdd7452a8a3b80400a9bfe5aa52abb638c405f94/images/a1-2.png)
 ---
 
 ## 3. ROS 2 Workspace Check
@@ -139,7 +139,7 @@ Summary: 1 package finished [0.78s]
 Show both source commands:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source install/setup.bash
 ```
 
@@ -150,7 +150,10 @@ ros2 run env_check_pkg talker.py
 
 **Output (3–4 lines):**
 ```
-[Paste 3-4 lines of talker output here]
+[INFO] [1769704527.795947467] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #50'
+[INFO] [1769704528.292883602] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #51'
+[INFO] [1769704528.798259520] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #52'
+[INFO] [1769704529.294923713] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #53'
 ```
 
 **Run listener:**
@@ -160,7 +163,10 @@ ros2 run env_check_pkg listener.py
 
 **Output (3–4 lines):**
 ```
-[Paste 3-4 lines of listener output here]
+[INFO] [1769704527.796227730] [env_check_pkg_listener]: I heard: 'AAE5303 hello #50'
+[INFO] [1769704528.293257669] [env_check_pkg_listener]: I heard: 'AAE5303 hello #51'
+[INFO] [1769704528.798673022] [env_check_pkg_listener]: I heard: 'AAE5303 hello #52'
+[INFO] [1769704529.295189986] [env_check_pkg_listener]: I heard: 'AAE5303 hello #53'
 ```
 
 **Alternative (using launch file):**
@@ -169,9 +175,7 @@ ros2 launch env_check_pkg env_check.launch.py
 ```
 
 **Screenshot:**  
-_[Include one screenshot showing talker + listener running]_
-
-![Talker and Listener Running](path/to/your/screenshot.png)
+![Talker and Listener Running](https://github.com/lorelleh/assignment1/blob/a39fabedeef690728deafa988c26123648f0756d/images/a1-3.png)
 
 ---
 
