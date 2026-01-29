@@ -121,7 +121,7 @@ colcon build
 Summary: 1 package finished [x.xx s]
 ```
 
-**Your actual output:**
+**Actual output:**
 ```
 (.venv) lorelleh@HOOSLAPTOP:/mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check$
 source /opt/ros/jazzy/setup.bash  
