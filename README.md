@@ -1,8 +1,5 @@
 # AAE5303 Environment Setup Report
 
-> **Important:** Follow this structure exactly in your submission README.  
-> Your goal is to demonstrate **evidence, process, problem-solving, and reflection** — not only screenshots.
-
 ---
 
 ## 1. System Information
@@ -15,7 +12,7 @@
 
 **Linux/ROS environment type:**  
 - [ ] Dual-boot Ubuntu
-- [✅] WSL2 Ubuntu
+- [√] WSL2 Ubuntu
 - [ ] Ubuntu in VM (UTM/VirtualBox/VMware/Parallels)
 - [ ] Docker container
 - [ ] Lab PC
