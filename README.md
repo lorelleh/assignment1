@@ -38,7 +38,8 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-**Any deviations from the default instructions:**  Manually created the project directory structure/empty files; installed dependencies via Alibaba Cloud PyPI mirror
+**Any deviations from the default instructions:**  
+Manually created the project directory structure/empty files; installed dependencies via Alibaba Cloud PyPI mirror
 
 ### 2.2 Test Results
 
