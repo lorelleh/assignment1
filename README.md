@@ -111,8 +111,9 @@ OpenCV version: 4.13.0 (required: ≥4.9)
 Paste the build output summary (final lines only):
 
 ```bash
-source /opt/ros/humble/setup.bash
-colcon build
+source /opt/ros/jazzy/setup.bash  
+cd ros2_wst/ros/jazzy/setup.bash
+colcon build                                                             
 ```
 
 **Expected output:**
@@ -122,7 +123,15 @@ Summary: 1 package finished [x.xx s]
 
 **Your actual output:**
 ```
-[Paste your build summary here]
+(.venv) lorelleh@HOOSLAPTOP:/mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check$
+source /opt/ros/jazzy/setup.bash  
+cd ros2_wst/ros/jazzy/setup.bash
+colcon build                                                             
+Starting >>> env_check_pkg
+[0.884s] WARNING:colcon.colcon_cmake.task.cmake.build:Could not run installation step for package 'env_check_pkg' because it has no 'install' target
+Finished <<< env_check_pkg [0.42s]
+
+Summary: 1 package finished [0.78s]
 ```
 
 ### 3.2 Run talker and listener
