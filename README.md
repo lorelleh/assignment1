@@ -297,10 +297,10 @@ _[Write your 3-5 sentence reflection here]_
 ✅ **I confirm that I performed this setup myself and all screenshots/logs reflect my own environment.**
 
 **Name:**  
-_[Your name]_
+HU Yiduo
 
 **Student ID:**  
-_[Your student ID]_
+25133786G
 
 **Date:**  
 _[Date of submission]_
