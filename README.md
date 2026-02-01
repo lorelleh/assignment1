@@ -24,7 +24,7 @@
 
 ### 2.1 Steps Taken
 
-**Describe briefly how you created/activated your Python environment:**  
+**Describe briefly how I created/activated My Python environment:**  
 In WSL2 Ubuntu 24.04, I created an isolated Python virtual environment named `.venv` in the project root directory using Python's built-in `venv` module. The environment was activated via the `source` command, with the `(.venv)` terminal prefix confirming successful activation. All required Python packages were installed following the specifications in `requirements.txt` after activation.
 
 **Tool used:**  venv
