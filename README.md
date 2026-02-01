@@ -342,8 +342,7 @@ HU Yiduo
 25133786G
 
 **Date:**  
-_[Date of submission]_
-
+2026-02-01
 ---
 
 ## Submission Checklist
