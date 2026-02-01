@@ -184,13 +184,13 @@ ros2 launch env_check_pkg env_check.launch.py
 ### Issue 1: [Package 'env_check_pkg' not found]
 
 **Cause / diagnosis:**  
-The ROS2 runtime environment did not load the compiled workspace configuration (install/setup.bash);
-The package was not compiled successfully, so the install directory (which contains package metadata) was missing;
+The ROS2 runtime environment did not load the compiled workspace configuration (install/setup.bash);  
+The package was not compiled successfully, so the install directory (which contains package metadata) was missing;  
 The package configuration files (package.xml/setup.py) did not comply with ROS2 ament_python standards.
 
 **Fix:**  
-Recompile the ROS2 workspace with Python-specific options to generate valid install directory;
-Reload the system ROS2 environment first, then the compiled workspace environment;
+Recompile the ROS2 workspace with Python-specific options to generate valid install directory;  
+Reload the system ROS2 environment first, then the compiled workspace environment;  
 Verify the package is recognized by ROS2 with ros2 pkg list.
 
 ```bash
@@ -212,11 +212,11 @@ ROS 2 Official Documentation (Working with Workspaces), Stack Overflow (ROS2 pac
 ### Issue 2: [Permission denied when running Python script directly]
 
 **Cause / diagnosis:**  
-The Python script files (talker.py/listener.py) did not have executable permissions in the Linux filesystem, which blocked direct execution;
+The Python script files (talker.py/listener.py) did not have executable permissions in the Linux filesystem, which blocked direct execution;  
 The default file creation mode in WSL2 does not grant executable permissions to regular files (e.g., .py scripts), leading to this restriction by default.
 
 **Fix:**  
-Add executable permissions to the Python scripts;
+Add executable permissions to the Python scripts;  
 Use the ROS2 standard ros2 run command.
 
 ```bash
@@ -233,7 +233,7 @@ Linux File Permission Basics, ROS 2 ros2 run Command Documentation
 ### Issue 3: [No explicit error, but new changes (e.g., fixed package.xml) do not take effect]
 
 **Cause / diagnosis:**  
-Residual files in build/install/log directories from previous failed builds overwrite new configuration;
+Residual files in build/install/log directories from previous failed builds overwrite new configuration;  
 The ROS2 build system uses cached data instead of reprocessing updated files.
 
 **Fix:**  
@@ -269,9 +269,9 @@ I created the env_check_pkg package in ROS2 Jazzy, compiled it with colcon build
 **AI's response (relevant part only):**
 ```
 The core cause of the "Package 'env_check_pkg' not found" error is that the package was not compiled to generate valid installation targets, or old build artifacts are interfering with the new configuration. The key fixes are:
-1. Clean up old build artifacts to avoid residual file conflicts: rm -rf build install log
-2. Compile Python packages with the --symlink-install option (mandatory for ament_python packages): colcon build --symlink-install
-3. Source the environment in the correct order (system ROS2 first, then workspace):
+1. Clean up old build artifacts to avoid residual file conflicts: rm -rf build install log  
+2. Compile Python packages with the --symlink-install option (mandatory for ament_python packages): colcon build --symlink-install  
+3. Source the environment in the correct order (system ROS2 first, then workspace):  
    source /opt/ros/jazzy/setup.bash
    source install/setup.bash
 4. Verify if the package is recognized by ROS2: ros2 pkg list | grep env_check_pkg
@@ -285,9 +285,9 @@ Explain briefly:
 - Did you double-check with official docs?
 
 **My explanation:**  
-The AI did not recommend any unsafe operations; all core steps aligned with ROS2 official best practices.
-I modified the solution by prioritizing the cleanup of old build artifacts (build/install/log) before compiling—while the AI mentioned this step, it did not emphasize its criticality. My previous repeated failed builds left residual files that overwrote new configurations, so manual cleanup became a mandatory first step (rather than an optional one).
-I double-checked the AI’s advice against the ROS2 Jazzy official documentation to confirm that --symlink-install is required for Python packages (ament_python) to generate valid installation targets in the install directory—this validation ensured I did not blindly copy the AI’s suggestion.
+The AI did not recommend any unsafe operations; all core steps aligned with ROS2 official best practices.  
+I modified the solution by prioritizing the cleanup of old build artifacts (build/install/log) before compiling—while the AI mentioned this step, it did not emphasize its criticality. My previous repeated failed builds left residual files that overwrote new configurations, so manual cleanup became a mandatory first step (rather than an optional one).  
+I double-checked the AI’s advice against the ROS2 Jazzy official documentation to confirm that --symlink-install is required for Python packages (ament_python) to generate valid installation targets in the install directory—this validation ensured I did not blindly copy the AI’s suggestion.  
 I ignored no part of the AI’s core guidance but adapted the step order to address my specific issue (residual build files).
 
 ### 5.4 Final solution I applied
@@ -310,8 +310,8 @@ ros2 run env_check_pkg talker
 ```
 
 **Why this worked:**  
-Cleaning old build artifacts removed invalid/cached files from previous failed builds, ensuring the new compilation used only up-to-date configurations.
-The --symlink-install option created symbolic links for Python scripts in the install directory (generic colcon build does not generate these for Python packages), which ROS2 requires to detect the package’s installation targets.
+Cleaning old build artifacts removed invalid/cached files from previous failed builds, ensuring the new compilation used only up-to-date configurations.  
+The --symlink-install option created symbolic links for Python scripts in the install directory (generic colcon build does not generate these for Python packages), which ROS2 requires to detect the package’s installation targets.  
 Sourcing the system ROS2 environment first (then the workspace) ensured the locally compiled env_check_pkg took precedence over system-level packages, allowing ROS2 to locate the package correctly.
 
 ---
@@ -320,9 +320,9 @@ Sourcing the system ROS2 environment first (then the workspace) ensured the loca
 
 **My reflection:**
 
-I learned that configuring ROS2 environments hinges on strict adherence to file structure, compilation rules (e.g., --symlink-install for Python packages), and path standards—small oversights like residual build artifacts can break an entire package.
-What surprised me most was how vague ROS2’s "package not found" error is, as it hides root causes from incorrect setup.py entries to cached files, requiring deeper log checks.
-Next time, I will back up package structures first and craft AI prompts with full context (e.g., exact paths) to get targeted advice.
+I learned that configuring ROS2 environments hinges on strict adherence to file structure, compilation rules (e.g., --symlink-install for Python packages), and path standards—small oversights like residual build artifacts can break an entire package.  
+What surprised me most was how vague ROS2’s "package not found" error is, as it hides root causes from incorrect setup.py entries to cached files, requiring deeper log checks.  
+Next time, I will back up package structures first and craft AI prompts with full context (e.g., exact paths) to get targeted advice.  
 I now feel confident in distinguishing environment configuration errors from code issues in ROS/Python, with cleaning build artifacts as my first troubleshooting step.
 
 ---
