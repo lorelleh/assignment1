@@ -229,7 +229,7 @@ Linux File Permission Basics, ROS 2 ros2 run Command Documentation
 
 ---
 
-### Issue 3 (Optional): [No explicit error, but new changes (e.g., fixed package.xml) do not take effect]
+### Issue 3: [No explicit error, but new changes (e.g., fixed package.xml) do not take effect]
 
 **Cause / diagnosis:**  
 Residual files in build/install/log directories from previous failed builds overwrite new configuration;
@@ -260,14 +260,20 @@ Choose one of the issues above and document how you used AI to solve it.
 
 **Your prompt:**
 ```
-[Copy-paste your actual message to the AI, not a summary]
+I created the env_check_pkg package in ROS2 Jazzy, compiled it with colcon build, and sourced /opt/ros/jazzy/setup.bash and install/setup.bash. However, when I run "ros2 run env_check_pkg talker", it still prompts "Package 'env_check_pkg' not found". Why can't ROS2 recognize my package?
 ```
 
 ### 5.2 Key helpful part of the AI's answer
 
 **AI's response (relevant part only):**
 ```
-[Quote only the relevant part of the AI's answer]
+The core cause of the "Package 'env_check_pkg' not found" error is that the package was not compiled to generate valid installation targets, or old build artifacts are interfering with the new configuration. The key fixes are:
+1. Clean up old build artifacts to avoid residual file conflicts: rm -rf build install log
+2. Compile Python packages with the --symlink-install option (mandatory for ament_python packages): colcon build --symlink-install
+3. Source the environment in the correct order (system ROS2 first, then workspace):
+   source /opt/ros/jazzy/setup.bash
+   source install/setup.bash
+4. Verify if the package is recognized by ROS2: ros2 pkg list | grep env_check_pkg
 ```
 
 ### 5.3 What you changed or ignored and why
@@ -278,18 +284,33 @@ Explain briefly:
 - Did you double-check with official docs?
 
 **Your explanation:**  
-_[Write your analysis here]_
+The AI did not recommend any unsafe operations; all core steps aligned with ROS2 official best practices.
+I modified the solution by prioritizing the cleanup of old build artifacts (build/install/log) before compiling—while the AI mentioned this step, it did not emphasize its criticality. My previous repeated failed builds left residual files that overwrote new configurations, so manual cleanup became a mandatory first step (rather than an optional one).
+I double-checked the AI’s advice against the ROS2 Jazzy official documentation to confirm that --symlink-install is required for Python packages (ament_python) to generate valid installation targets in the install directory—this validation ensured I did not blindly copy the AI’s suggestion.
+I ignored no part of the AI’s core guidance but adapted the step order to address my specific issue (residual build files).
 
 ### 5.4 Final solution you applied
 
 Show the exact command or file edit that fixed the problem:
 
 ```bash
-[Your final command/code here]
+# Step 1: Clean up old build artifacts to eliminate residual conflicts
+rm -rf build install log
+# Step 2: Compile the workspace with Python-specific option (required for ament_python)
+colcon build --symlink-install
+# Step 3: Source environment in correct order (system ROS2 first, then workspace)
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+# Step 4: Verify package is recognized by ROS2
+ros2 pkg list | grep env_check_pkg
+# Step 5: Run the talker node (now works)
+ros2 run env_check_pkg talker
 ```
 
 **Why this worked:**  
-_[Brief explanation]_
+Cleaning old build artifacts removed invalid/cached files from previous failed builds, ensuring the new compilation used only up-to-date configurations.
+The --symlink-install option created symbolic links for Python scripts in the install directory (generic colcon build does not generate these for Python packages), which ROS2 requires to detect the package’s installation targets.
+Sourcing the system ROS2 environment first (then the workspace) ensured the locally compiled env_check_pkg took precedence over system-level packages, allowing ROS2 to locate the package correctly.
 
 ---
 
