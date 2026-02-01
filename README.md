@@ -4,11 +4,14 @@
 
 ## 1. System Information
 
-**Laptop model:**  TX Air FA401KM
+**Laptop model:**  
+TX Air FA401KM
 
-**CPU / RAM:**  AMD Ryzen AI 7 H 350 w, 32GB RAM
+**CPU / RAM:**  
+AMD Ryzen AI 7 H 350 w, 32GB RAM
 
-**Host OS:**  Ubuntu 24.04
+**Host OS:**  
+Ubuntu 24.04
 
 **Linux/ROS environment type:**  
 - [ ] Dual-boot Ubuntu
@@ -27,7 +30,8 @@
 **Describe briefly how I created/activated My Python environment:**  
 In WSL2 Ubuntu 24.04, I created an isolated Python virtual environment named `.venv` in the project root directory using Python's built-in `venv` module. The environment was activated via the `source` command, with the `(.venv)` terminal prefix confirming successful activation. All required Python packages were installed following the specifications in `requirements.txt` after activation.
 
-**Tool used:**  venv
+**Tool used:**  
+venv
 
 **Key commands I ran:**
 ```bash
