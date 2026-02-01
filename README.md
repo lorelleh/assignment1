@@ -181,56 +181,72 @@ ros2 launch env_check_pkg env_check.launch.py
 
 ## 4. Problems Encountered and How I Solved Them
 
-> **Note:** Write 2–3 issues, even if small. This section is crucial — it demonstrates understanding and problem-solving.
-
-### Issue 1: [Write the exact error message or problem]
+### Issue 1: [Package 'env_check_pkg' not found]
 
 **Cause / diagnosis:**  
-_[Explain what you think caused it]_
+The ROS2 runtime environment did not load the compiled workspace configuration (install/setup.bash);
+The package was not compiled successfully, so the install directory (which contains package metadata) was missing;
+The package configuration files (package.xml/setup.py) did not comply with ROS2 ament_python standards.
 
 **Fix:**  
-_[The exact command/config change you used to solve it]_
+Recompile the ROS2 workspace with Python-specific options to generate valid install directory;
+Reload the system ROS2 environment first, then the compiled workspace environment;
+Verify the package is recognized by ROS2 with ros2 pkg list.
 
 ```bash
-[Your fix command/code here]
+# Compile workspace with Python-specific option
+colcon build --symlink-install
+# Reload environment in correct order
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+# Verify package recognition
+ros2 pkg list | grep env_check_pkg
 ```
 
 **Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
+ROS 2 Official Documentation (Working with Workspaces), Stack Overflow (ROS2 package not found issues)
 
 ---
 
-### Issue 2: [Another real error or roadblock]
+### Issue 2: [Permission denied when running Python script directly]
 
 **Cause / diagnosis:**  
-_[Explain what you think caused it]_
+The Python script files (talker.py/listener.py) did not have executable permissions in the Linux filesystem, which blocked direct execution;
+The default file creation mode in WSL2 does not grant executable permissions to regular files (e.g., .py scripts), leading to this restriction by default.
 
 **Fix:**  
-_[The exact command/config change you used to solve it]_
+Add executable permissions to the Python scripts;
+Use the ROS2 standard ros2 run command.
 
 ```bash
-[Your fix command/code here]
+# Add executable permission (for direct script run)
+cd src/env_check_pkg/env_check_pkg
+chmod +x talker.py listener.py
 ```
 
 **Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
+Linux File Permission Basics, ROS 2 ros2 run Command Documentation
 
 ---
 
-### Issue 3 (Optional): [Title]
+### Issue 3 (Optional): [No explicit error, but new changes (e.g., fixed package.xml) do not take effect]
 
 **Cause / diagnosis:**  
-_[Explain what you think caused it]_
+Residual files in build/install/log directories from previous failed builds overwrite new configuration;
+The ROS2 build system uses cached data instead of reprocessing updated files.
 
 **Fix:**  
-_[The exact command/config change you used to solve it]_
+Delete all build artifacts before recompiling to ensure a clean build environment.
 
 ```bash
-[Your fix command/code here]
+# Clean all build artifacts
+rm -rf ros2_ws/build ros2_ws/install ros2_ws/log
+# Recompile with clean state
+cd ros2_ws && colcon build --symlink-install
 ```
 
 **Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
+ROS 2 Troubleshooting Guide (Clean Build), ROS 2 Colcon Cache Documentation
 
 ---
 
