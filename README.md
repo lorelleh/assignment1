@@ -29,7 +29,7 @@ In WSL2 Ubuntu 24.04, I created an isolated Python virtual environment named `.v
 
 **Tool used:**  venv
 
-**Key commands you ran:**
+**Key commands I ran:**
 ```bash
 sudo apt install -y python3-venv
 sudo apt list --installed | grep python3-venv
@@ -255,15 +255,11 @@ ROS 2 Troubleshooting Guide (Clean Build), ROS 2 Colcon Cache Documentation
 
 ---
 
-## 5. Use of Generative AI (Required)
+## 5. Use of Generative AI
 
-Choose one of the issues above and document how you used AI to solve it.
+### 5.1 Exact prompt I asked
 
-> **Goal:** Show critical use of AI, not blind copying.
-
-### 5.1 Exact prompt you asked
-
-**Your prompt:**
+**My prompt:**
 ```
 I created the env_check_pkg package in ROS2 Jazzy, compiled it with colcon build, and sourced /opt/ros/jazzy/setup.bash and install/setup.bash. However, when I run "ros2 run env_check_pkg talker", it still prompts "Package 'env_check_pkg' not found". Why can't ROS2 recognize my package?
 ```
@@ -281,22 +277,22 @@ The core cause of the "Package 'env_check_pkg' not found" error is that the pack
 4. Verify if the package is recognized by ROS2: ros2 pkg list | grep env_check_pkg
 ```
 
-### 5.3 What you changed or ignored and why
+### 5.3 What I changed or ignored and why
 
 Explain briefly:
 - Did the AI recommend something unsafe?
 - Did you modify its solution?
 - Did you double-check with official docs?
 
-**Your explanation:**  
+**My explanation:**  
 The AI did not recommend any unsafe operations; all core steps aligned with ROS2 official best practices.
 I modified the solution by prioritizing the cleanup of old build artifacts (build/install/log) before compiling—while the AI mentioned this step, it did not emphasize its criticality. My previous repeated failed builds left residual files that overwrote new configurations, so manual cleanup became a mandatory first step (rather than an optional one).
 I double-checked the AI’s advice against the ROS2 Jazzy official documentation to confirm that --symlink-install is required for Python packages (ament_python) to generate valid installation targets in the install directory—this validation ensured I did not blindly copy the AI’s suggestion.
 I ignored no part of the AI’s core guidance but adapted the step order to address my specific issue (residual build files).
 
-### 5.4 Final solution you applied
+### 5.4 Final solution I applied
 
-Show the exact command or file edit that fixed the problem:
+The exact command or file edit that fixed the problem:
 
 ```bash
 # Step 1: Clean up old build artifacts to eliminate residual conflicts
@@ -329,7 +325,7 @@ Short but thoughtful:
 - What would you do differently next time (backup, partitioning, reading error logs, asking better AI questions)?
 - How confident do you feel about debugging ROS/Python issues now?
 
-**Your reflection:**
+**My reflection:**
 
 _[Write your 3-5 sentence reflection here]_
 
