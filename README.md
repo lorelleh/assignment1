@@ -350,13 +350,13 @@ _[Date of submission]_
 
 Before submitting, ensure you have:
 
-- ✅ Filled in all system information
-- ✅ Included actual terminal outputs (not just screenshots)
-- ✅ Provided at least 2 screenshots (Python tests + ROS talker/listener)
-- ✅ Documented 2–3 real problems with solutions
-- ✅ Completed the AI usage section with exact prompts
-- ✅ Written a thoughtful reflection (3–5 sentences)
-- ✅ Signed the declaration
+- [x] Filled in all system information
+- [x] Included actual terminal outputs (not just screenshots)
+- [x] Provided at least 2 screenshots (Python tests + ROS talker/listener)
+- [x] Documented 2–3 real problems with solutions
+- [x] Completed the AI usage section with exact prompts
+- [x] Written a thoughtful reflection (3–5 sentences)
+- [x] Signed the declaration
 
 ---
 
