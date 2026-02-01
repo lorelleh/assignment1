@@ -198,8 +198,9 @@ Verify the package is recognized by ROS2 with ros2 pkg list.
 colcon build --symlink-install
 # Reload environment in correct order
 source /opt/ros/jazzy/setup.bash
-source install/setup.bash
-# Verify package recognition
+# Use absolute path for workspace setup.bash
+source /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/install/setup.bash
+# Verify package is recognized by ROS2
 ros2 pkg list | grep env_check_pkg
 ```
 
@@ -219,8 +220,8 @@ Add executable permissions to the Python scripts;
 Use the ROS2 standard ros2 run command.
 
 ```bash
-# Add executable permission (for direct script run)
-cd src/env_check_pkg/env_check_pkg
+# Add executable permission
+cd /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/src/env_check_pkg
 chmod +x talker.py listener.py
 ```
 
@@ -240,9 +241,13 @@ Delete all build artifacts before recompiling to ensure a clean build environmen
 
 ```bash
 # Clean all build artifacts
-rm -rf ros2_ws/build ros2_ws/install ros2_ws/log
+rm -rf /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/build
+rm -rf /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/install
+rm -rf /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/log
+# Change directory to your ROS2 workspace root 
+cd /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws
 # Recompile with clean state
-cd ros2_ws && colcon build --symlink-install
+colcon build --symlink-install
 ```
 
 **Reference:**  
@@ -296,14 +301,15 @@ Show the exact command or file edit that fixed the problem:
 ```bash
 # Step 1: Clean up old build artifacts to eliminate residual conflicts
 rm -rf build install log
-# Step 2: Compile the workspace with Python-specific option (required for ament_python)
+# Step 2: Compile the workspace with Python-specific option
 colcon build --symlink-install
-# Step 3: Source environment in correct order (system ROS2 first, then workspace)
+# Step 3: Reload environment in correct order
 source /opt/ros/jazzy/setup.bash
-source install/setup.bash
-# Step 4: Verify package is recognized by ROS2
+# Step 4:Use absolute path for workspace setup.bash
+source /mnt/e/PolyU/SEM2/AAE5303/test/a1/aae5303-env-check/ros2_ws/install/setup.bash
+# Step 5: Verify package is recognized by ROS2
 ros2 pkg list | grep env_check_pkg
-# Step 5: Run the talker node (now works)
+# Step 6: Run the talker node
 ros2 run env_check_pkg talker
 ```
 
