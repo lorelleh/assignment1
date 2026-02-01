@@ -318,22 +318,18 @@ Sourcing the system ROS2 environment first (then the workspace) ensured the loca
 
 ## 6. Reflection (3–5 sentences)
 
-Short but thoughtful:
-
-- What did you learn about configuring robotics environments?
-- What surprised you?
-- What would you do differently next time (backup, partitioning, reading error logs, asking better AI questions)?
-- How confident do you feel about debugging ROS/Python issues now?
-
 **My reflection:**
 
-_[Write your 3-5 sentence reflection here]_
+I learned that configuring ROS2 environments hinges on strict adherence to file structure, compilation rules (e.g., --symlink-install for Python packages), and path standards—small oversights like residual build artifacts can break an entire package.
+What surprised me most was how vague ROS2’s "package not found" error is, as it hides root causes from incorrect setup.py entries to cached files, requiring deeper log checks.
+Next time, I will back up package structures first and craft AI prompts with full context (e.g., exact paths) to get targeted advice.
+I now feel confident in distinguishing environment configuration errors from code issues in ROS/Python, with cleaning build artifacts as my first troubleshooting step.
 
 ---
 
 ## 7. Declaration
 
-✅ **I confirm that I performed this setup myself and all screenshots/logs reflect my own environment.**
+**I confirm that I performed this setup myself and all screenshots/logs reflect my own environment.**
 
 **Name:**  
 HU Yiduo
