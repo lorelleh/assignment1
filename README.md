@@ -283,11 +283,6 @@ The core cause of the "Package 'env_check_pkg' not found" error is that the pack
 
 ### 5.3 What I changed or ignored and why
 
-Explain briefly:
-- Did the AI recommend something unsafe?
-- Did you modify its solution?
-- Did you double-check with official docs?
-
 **My explanation:**  
 The AI did not recommend any unsafe operations; all core steps aligned with ROS2 official best practices.  
 I modified the solution by prioritizing the cleanup of old build artifacts (build/install/log) before compiling—while the AI mentioned this step, it did not emphasize its criticality. My previous repeated failed builds left residual files that overwrote new configurations, so manual cleanup became a mandatory first step (rather than an optional one).  
@@ -323,7 +318,6 @@ Sourcing the system ROS2 environment first (then the workspace) ensured the loca
 ## 6. Reflection (3–5 sentences)
 
 **My reflection:**
-
 I learned that configuring ROS2 environments hinges on strict adherence to file structure, compilation rules (e.g., --symlink-install for Python packages), and path standards—small oversights like residual build artifacts can break an entire package.  
 What surprised me most was how vague ROS2’s "package not found" error is, as it hides root causes from incorrect setup.py entries to cached files, requiring deeper log checks.  
 Next time, I will back up package structures first and craft AI prompts with full context (e.g., exact paths) to get targeted advice.  
